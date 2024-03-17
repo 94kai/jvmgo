@@ -1,8 +1,10 @@
 package main
 
-import "flag"
-import "fmt"
-import "os"
+import (
+	"flag"
+	"fmt"
+	"os"
+)
 
 type Cmd struct {
 	helpFlag    bool
@@ -22,7 +24,7 @@ func parseCmd() *Cmd {
 	flag.StringVar(&cmd.cpOption, "cp", "", "classpath")
 	flag.Parse()
 	args := flag.Args()
-	if len(args) < 0 {
+	if len(args) > 0 {
 		cmd.class = args[0]
 		cmd.args = args[1:]
 	}

@@ -1,14 +1,15 @@
 package classpath
 
-import "os"
-import "path/filepath"
+import (
+	"os"
+	"path/filepath"
+)
 
 type Classpath struct {
 	bootClasspath Entry
 	extClasspath  Entry
 	userClasspath Entry
 }
-
 
 func Parse(jreOption, cpOption string) *Classpath {
 	cp := &Classpath{}
@@ -19,9 +20,9 @@ func Parse(jreOption, cpOption string) *Classpath {
 
 func (self *Classpath) parseBootAndExtClasspath(jreOption string) {
 	jreDir := getJreDir(jreOption)
-	jreLibPath := filepath.Join(jreDir, "*")
+	jreLibPath := filepath.Join(jreDir, "lib", "*")
 	self.bootClasspath = newWildcardEntry(jreLibPath)
-	jreExtPath := filepath.Join(jreDir, "ext", "*")
+	jreExtPath := filepath.Join(jreDir, "lib", "ext", "*")
 	self.extClasspath = newWildcardEntry(jreExtPath)
 }
 
@@ -44,7 +45,7 @@ func getJreDir(jreOption string) string {
 		return "./jre"
 	}
 	if jh := os.Getenv("JAVA_HOME"); jh != "" {
-		return filepath.Join(jh, "lib")
+		return filepath.Join(jh, "jre")
 	}
 	panic("Can not find jre folder!")
 }
