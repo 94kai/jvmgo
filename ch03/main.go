@@ -1,9 +1,9 @@
 package main
 
 import (
+	"ch03/classfile"
+	"ch03/classpath"
 	"fmt"
-	"jvmgo/ch03/classfile"
-	"jvmgo/ch03/classpath"
 	"strings"
 )
 

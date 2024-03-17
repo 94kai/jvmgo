@@ -1,3 +1,3 @@
-module jvmgo/ch02
+module ch02
 
 go 1.22.1

@@ -1,8 +1,10 @@
 package main
 
-import "fmt"
-import "strings"
-import "jvmgo/ch02/classpath"
+import (
+	"ch02/classpath"
+	"fmt"
+	"strings"
+)
 
 func main() {
 	cmd := parseCmd()
