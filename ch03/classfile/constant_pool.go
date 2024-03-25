@@ -48,12 +48,6 @@ func newConstantInfo(tag uint8, cp ConstantPool) ConstantInfo {
 type ConstantPool []ConstantInfo
 
 func readConstantPool(reader *ClassReader) ConstantPool {
-	if cpInfo := self[index]; cpInfo != nil {
-		return cpInfo
-	}
-	panic("Invalid constant pool index!")
-}
-func (self ConstantPool) getConstantInfo(index uint16) ConstantInfo {
 	cpCount := int(reader.readUint16())
 	cp := make([]ConstantInfo, cpCount)
 	for i := 1; i < cpCount; i++ { // 注意索引从1 开始
@@ -64,6 +58,13 @@ func (self ConstantPool) getConstantInfo(index uint16) ConstantInfo {
 		}
 	}
 	return cp
+}
+
+func (self ConstantPool) getConstantInfo(index uint16) ConstantInfo {
+	if cpInfo := self[index]; cpInfo != nil {
+		return cpInfo
+	}
+	panic("Invalid constant pool index!")
 }
 func (self ConstantPool) getNameAndType(index uint16) (string, string) {
 	ntInfo := self.getConstantInfo(index).(*ConstantNameAndTypeInfo)
