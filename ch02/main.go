@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	cmd := parseCmd()
+	cmd := parseCmd("/root/project/go/jvmgo/java/jre")
 	if cmd.versionFlag {
 		fmt.Println("version 0.1.0")
 	} else if cmd.helpFlag || cmd.class == "" {
